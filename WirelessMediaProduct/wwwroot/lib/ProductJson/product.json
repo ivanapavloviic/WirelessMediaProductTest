@@ -1,0 +1,41 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "naziv": "Nike Patike AirMax Plus",
+      "opis": "Nova kolekcija patike airmax",
+      "kategorija": "airmax",
+      "proizvodjac": "Nike",
+      "dobavljac": "NikeAmerica",
+      "cena": 379
+    },
+    {
+      "id": 2,
+      "naziv": "Nike Patike Jordan",
+      "opis": "Jordan patike za kosarku",
+      "kategorija": "jordan",
+      "proizvodjac": "Nike",
+      "dobavljac": "NikeAmerica",
+      "cena": 305
+    },
+    {
+      "id": 3,
+      "naziv": "Fila disruptor",
+      "opis": "Fila casual patike",
+      "kategorija": "casual",
+      "proizvodjac": "Fila",
+      "dobavljac": "OfficeShoes",
+      "cena": 188
+    },
+    {
+      "id": 4,
+      "naziv": "Adidas Superstar",
+      "opis": "Superstar patike za jesen",
+      "kategorija": "superstar",
+      "proizvodjac": "Adidas",
+      "dobavljac": "Adidasler",
+      "cena": 199
+    }
+
+  ]
+}
