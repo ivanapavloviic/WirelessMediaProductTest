@@ -27,6 +27,20 @@ namespace WirelessMediaProduct.Controllers
         {
             return View();
         }
+        public IActionResult Prijava()
+        {
+            ViewBag.Message = "Novi proizvod";
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Prijava(ProductData model)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
