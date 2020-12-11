@@ -13,6 +13,7 @@ namespace WirelessMediaProduct.Controllers
 {
     public class HomeController : Controller
     {
+        List<ProductData> podaci = new List<ProductData>();
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -22,7 +23,7 @@ namespace WirelessMediaProduct.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(podaci.OrderBy(s => s.id).ToList());
         }
 
         public IActionResult Privacy()
@@ -34,7 +35,7 @@ namespace WirelessMediaProduct.Controllers
         {
             ViewBag.Message = "Lista proizvoda";
             var data = UcitajPodatke();
-            List<ProductData> podaci = new List<ProductData>();
+           
 
             foreach(var row in data)
             {
@@ -67,6 +68,22 @@ namespace WirelessMediaProduct.Controllers
             }
             return View();
         }
+
+        public ActionResult Edit(int id)
+        {
+            var pro = podaci.Where(p => p.id == id).FirstOrDefault();
+            return View(pro);
+        }
+        [HttpPost]
+        public ActionResult Edit(ProductData pro)
+        {
+            var proi = podaci.Where(s => s.id == pro.id).FirstOrDefault();
+            podaci.Remove(proi);
+            podaci.Add(pro);
+
+            return View("Index");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

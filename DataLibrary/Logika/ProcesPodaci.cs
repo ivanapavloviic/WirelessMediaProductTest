@@ -24,6 +24,8 @@ namespace DataLibrary.Logika
                 Cena = cena
             };
 
+            
+
             string sql = @"insert into dbo.Products(Id, Naziv, Opis, Kategorija, Proizvodjac, Dobavljac, Cena)
 values(@Id, @Naziv, @Opis, @Kategorija, @Proizvodjac, @Dobavljac, @Cena);";
             return SqlPristupPodacima.SacuvajPodatke(sql, data);
