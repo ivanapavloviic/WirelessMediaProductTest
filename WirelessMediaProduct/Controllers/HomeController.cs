@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WirelessMediaProduct.Models;
+using DataLibrary;
+using static DataLibrary.Logika.ProcesPodaci;
 
 namespace WirelessMediaProduct.Controllers
 {
@@ -27,16 +29,40 @@ namespace WirelessMediaProduct.Controllers
         {
             return View();
         }
+
+        public ActionResult ViewProizvode()
+        {
+            ViewBag.Message = "Lista proizvoda";
+            var data = UcitajPodatke();
+            List<ProductData> podaci = new List<ProductData>();
+
+            foreach(var row in data)
+            {
+                podaci.Add(new ProductData
+                {
+                    id = row.Id,
+                    naziv = row.Naziv,
+                    opis = row.Opis,
+                    kategorija = row.Kategorija,
+                    proizvodjac = row.Proizvodjac,
+                    dobavljac = row.Dobavljac,
+                    cena = row.Cena
+                });
+            }
+            return View(podaci);
+        }
         public IActionResult Prijava()
         {
             ViewBag.Message = "Novi proizvod";
             return View();
         }
         [HttpPost]
-        public IActionResult Prijava(ProductData model)
+        public ActionResult Prijava(ProductData model)
         {
             if (ModelState.IsValid)
             {
+                int proizvodKreiran=NoviProizvod(model.id, model.naziv, model.opis,
+                    model.kategorija, model.proizvodjac, model.dobavljac, model.cena);
                 return RedirectToAction("Index");
             }
             return View();
